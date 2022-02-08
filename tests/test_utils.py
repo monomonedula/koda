@@ -7,7 +7,7 @@ from koda.utils import (
     maybe_to_result,
     result_to_maybe,
     safe_try,
-    mapping_get,
+    mapping_get, is_err, is_ok,
 )
 from koda._generics import A, B
 from koda.maybe import Just, nothing
@@ -208,3 +208,13 @@ def test_mapping_get() -> None:
     assert mapping_get(d, "a") == Just(None)
     assert mapping_get(d, "b") == Just("ok")
     assert mapping_get(d, "c") == nothing
+
+
+def test_is_err() -> None:
+    assert not is_err(Ok("whatever"))
+    assert is_err(Err("whatever"))
+
+
+def test_is_ok() -> None:
+    assert is_ok(Ok("whatever"))
+    assert not is_ok(Err("whatever"))

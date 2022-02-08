@@ -51,3 +51,11 @@ def load_once(fn: Callable[[], A]) -> Callable[[], A]:
 
 
 safe_try = _safe_try
+
+
+def is_err(result: Result) -> bool:
+    return isinstance(result, Err)
+
+
+def is_ok(result: Result) -> bool:
+    return isinstance(result, Ok)
